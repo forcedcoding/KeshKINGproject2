@@ -32,8 +32,8 @@ app.post('/books', async (req, res) => {
     const newBook = new Book(req.body);
     try {
         const savedBook = await newBook.save();
-        res.status(200).json(savedBook).send('Book added successfully');
+        res.status(200).json({ message: 'Book added successfully', book: savedBook });
     } catch (err) {
-        res.status(500).json(err).send('Error adding book');
+        res.status(500).json({ error: 'Error adding book', details: err.message });
     }
 });
